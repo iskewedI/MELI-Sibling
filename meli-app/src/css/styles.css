@@ -1,0 +1,160 @@
+@import './normalize.css';
+
+/* --------------  Global --------------  */
+:root {
+  /* MELI Color Palette */
+  --border-radius: 4px;
+  --color-accent: #ffe600;
+  --color-body-darker: #333333;
+  --color-body-lighter: #999999;
+  --color-body: #666666;
+  --color-border: #;
+  --color-primary: #3483fa;
+  --color-secondary: #3483fa;
+  --color-headings: ;
+}
+
+body {
+  margin: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/* --------------  Typography --------------  */
+::selection {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+html {
+  /* 62.5% of 16px = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--color-body);
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
+    sans-serif;
+  /* 16px body */
+  font-size: 1.6rem;
+  /* 1.5 x current font size */
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-body-darker);
+  margin-bottom: 1rem;
+}
+
+/* Product detail  => Product description header */
+h1 {
+  font-size: 2.8rem;
+}
+
+/* Results => Product title */
+h2 {
+  font-size: 2.4rem;
+}
+
+/* Results => Product description */
+h3 {
+  font-size: 1.8rem;
+}
+
+p {
+  /* Avoid default margin collapsing with h3 */
+  margin-top: 0;
+}
+
+/* --------------  Responsive text --------------  */
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}
+
+/* --------------  Input --------------  */
+.input {
+  border: 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  outline: 0;
+  padding: 1.3rem 1.5rem;
+}
+
+.input::placeholder {
+  color: var(--color-body-lighter);
+}
+
+/* --------------  Input Group --------------  */
+.input-group {
+  display: flex;
+}
+
+.input-group .input {
+  flex-grow: 1;
+  width: 0;
+}
+
+/* --------------  Icons --------------  */
+.icon {
+  width: 48px;
+  height: 48px;
+}
+
+.icon--small {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-container {
+  align-items: center;
+  background-color: #eeeeee;
+  display: inline-flex;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+}
+
+/* --------------  Navigation Bar --------------  */
+.nav {
+  background-color: var(--color-accent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 15rem;
+}
+
+.nav__brand {
+  margin-right: 2.6rem;
+}
+
+.nav__brand img {
+  height: 3.6rem;
+}
+
+.nav__search {
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 768px) {
+}
