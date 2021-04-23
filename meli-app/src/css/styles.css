@@ -8,7 +8,6 @@
   --color-body-darker: #333333;
   --color-body-lighter: #999999;
   --color-body: #666666;
-  --color-border: #;
   --color-primary: #3483fa;
   --color-secondary: #3483fa;
   --color-headings: ;
@@ -128,7 +127,6 @@ p {
 
 .icon-container {
   align-items: center;
-  background-color: #eeeeee;
   display: inline-flex;
   justify-content: center;
   padding: 1rem 1.5rem;
@@ -157,4 +155,129 @@ p {
 }
 
 @media screen and (min-width: 768px) {
+}
+
+/* --------------  Buttons --------------  */
+.btn {
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+}
+
+.btn--grey {
+  background-color: #eeeeee;
+}
+
+.btn--grey:hover {
+  background-color: #f2f2f2;
+}
+
+.btn:active {
+  background-color: #e7e7e7;
+}
+
+.btn--transparent {
+  background-color: transparent;
+}
+
+.btn--transparent:active {
+  background-color: transparent;
+}
+
+/* --------------  Lists --------------  */
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list--inline .list__item {
+  display: inline;
+}
+
+.list--breadcrumb {
+  margin: 0;
+  color: var(--color-body);
+  font-size: 1.4rem;
+}
+
+.list--breadcrumb .list__item {
+  cursor: pointer;
+}
+
+.list--breadcrumb .list__item:hover {
+  color: var(--color-body-darker);
+}
+
+.list--breadcrumb .list__item:active {
+  color: black;
+}
+
+.list--breadcrumb .list__item::before {
+  padding: 0 0.8rem;
+  content: '>';
+  cursor: default;
+}
+
+.list--breadcrumb .list__item:last-child {
+  color: var(--color-body-darker);
+}
+
+.list--breadcrumb .list__item:first-child:before {
+  content: none;
+}
+
+/* --------------  Grid --------------  */
+.grid {
+  display: grid;
+}
+
+.grid--cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* --------------  Product summary --------------  */
+.product-summary {
+  grid-template-columns: 0fr 0.8fr 0.2fr;
+}
+
+.product-summary__heading {
+  display: inline-block;
+  font-size: 2.4rem;
+  margin: 3.2rem 0;
+  word-break: break-all;
+}
+
+.product-summary__image {
+  margin: 1.6rem;
+  width: 180px;
+  border-radius: 4px;
+}
+
+.product-summary__content {
+  max-width: 760px;
+  color: var(--color-body-darker);
+  font-weight: 600;
+}
+
+.product-summary--shipping .product-summary__heading {
+  position: relative;
+}
+
+.product-summary--shipping .product-summary__heading::before {
+  content: url('../misc/images/ic_shipping.png');
+  display: inline-block;
+  position: absolute;
+  right: -25px;
+}
+
+.product-summary__description {
+  font-size: 1.8rem;
+}
+
+.product-summary_location {
+  margin: 25% 0;
 }
