@@ -285,7 +285,7 @@ p {
 .product-summary__heading {
   display: inline-block;
   font-size: 2.4rem;
-  margin-bottom: 3.2rem;
+  margin: 3.2rem 0;
   word-break: break-all;
 }
 
@@ -296,13 +296,15 @@ p {
   font-weight: 600;
   max-width: 760px;
   position: relative;
-  top: 5rem;
 }
 
 .product-summary--reversed .product-summary__heading {
   order: 2;
   margin-bottom: 0;
-  margin-top: 3.2rem;
+}
+
+.product-summary--reversed .product-summary__content {
+  top: 5rem;
 }
 
 .product-summary__description {
@@ -319,15 +321,13 @@ p {
     font-size: 1rem;
   }
 
-  .product-summary__heading {
-    margin-bottom: 1rem;
-  }
-
   .product-summary__money-symbol {
     margin-right: 0.5rem;
   }
+
   .product-summary__heading {
     font-size: 1.6rem;
+    margin: 1rem 0;
   }
 }
 
@@ -356,7 +356,7 @@ p {
 
 /* --------------  Product Result --------------  */
 .product-result {
-  grid-template-columns: 0fr 0.8fr 0.2fr;
+  grid-template-columns: 0.8fr 0.2fr;
   background-color: white;
 }
 
