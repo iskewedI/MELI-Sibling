@@ -42,6 +42,7 @@ body {
   font-size: 1.6rem;
   /* 1.5 x current font size */
   line-height: 1.5;
+  background-color: #eee;
 }
 
 h1,
@@ -243,6 +244,9 @@ p {
 .product-summary {
   grid-template-columns: 0fr 0.8fr 0.2fr;
 }
+.product-summary {
+  background-color: white;
+}
 
 .product-summary__heading {
   display: inline-block;
@@ -280,4 +284,33 @@ p {
 
 .product-summary_location {
   margin: 25% 0;
+}
+
+.product-container {
+  background-color: white;
+}
+
+.product-summary__money-symbol {
+  margin-right: 1rem;
+}
+
+/* --------------  Product List --------------  */
+
+.product-list__separator {
+  background-color: #f7f7f7;
+  border: none;
+  color: #f7f7f7;
+  height: 2px;
+  margin-bottom: 1rem;
+  margin: 0 auto;
+  width: 90%;
+}
+
+/* --------------  Search Results page --------------  */
+.search-results {
+  margin: 0 15rem 10rem;
+}
+
+.search-results__nav {
+  margin: 1.6rem 0;
 }

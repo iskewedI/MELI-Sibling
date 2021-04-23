@@ -4,10 +4,23 @@ import ProductSummary from './../small_components/ProductSummary';
 const ProductList = () => {
   return (
     <div>
-      <ProductSummary shipping={true} />
-      <ProductSummary />
-      <ProductSummary shipping={true} />
-      <ProductSummary />
+      <div className='product-container'>
+        <ProductSummary shipping={true} />
+        <hr className='product-list__separator' />
+      </div>
+
+      <div className='product-container'>
+        <ProductSummary />
+        <hr className='product-list__separator' />
+      </div>
+      <div className='product-container'>
+        <ProductSummary shipping={true} />
+        <hr className='product-list__separator' />
+      </div>
+      <div className='product-container'>
+        <ProductSummary />
+        <hr className='product-list__separator' />
+      </div>
     </div>
   );
 };
