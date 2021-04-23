@@ -65,6 +65,7 @@ h2 {
 /* Results => Product description */
 h3 {
   font-size: 1.8rem;
+  margin: 0;
 }
 
 p {
@@ -105,6 +106,12 @@ p {
   color: var(--color-body-lighter);
 }
 
+@media screen and (max-width: 768px) {
+  .input {
+    font-size: 1.4rem;
+  }
+}
+
 /* --------------  Input Group --------------  */
 .input-group {
   display: flex;
@@ -133,6 +140,17 @@ p {
   padding: 1rem 1.5rem;
 }
 
+@media screen and (max-width: 768px) {
+  .icon--small {
+    width: 18px;
+    height: 18px;
+  }
+
+  .icon-container {
+    padding: 0.5rem 1rem;
+  }
+}
+
 /* --------------  Navigation Bar --------------  */
 .nav {
   background-color: var(--color-accent);
@@ -155,7 +173,18 @@ p {
   flex-grow: 1;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
+  .nav {
+    padding: 0.9rem 5vw;
+  }
+
+  .nav__brand {
+    margin-right: 1rem;
+  }
+
+  .nav__brand img {
+    height: 2.8rem;
+  }
 }
 
 /* --------------  Buttons --------------  */
@@ -163,6 +192,10 @@ p {
   border: 0;
   cursor: pointer;
   outline: 0;
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
 }
 
 .btn--grey {
@@ -214,17 +247,25 @@ p {
 }
 
 .list--breadcrumb .list__item::before {
-  padding: 0 0.8rem;
   content: '>';
   cursor: default;
+  font-weight: normal;
+  padding: 0 0.8rem;
 }
 
 .list--breadcrumb .list__item:last-child {
   color: var(--color-body-darker);
+  font-weight: 600;
 }
 
 .list--breadcrumb .list__item:first-child:before {
   content: none;
+}
+
+@media screen and (max-width: 768px) {
+  .list--breadcrumb {
+    font-size: 1rem;
+  }
 }
 
 /* --------------  Grid --------------  */
@@ -241,59 +282,111 @@ p {
 }
 
 /* --------------  Product summary --------------  */
-.product-summary {
-  grid-template-columns: 0fr 0.8fr 0.2fr;
-}
-.product-summary {
-  background-color: white;
-}
-
 .product-summary__heading {
   display: inline-block;
   font-size: 2.4rem;
-  margin: 3.2rem 0;
+  margin-bottom: 3.2rem;
   word-break: break-all;
 }
 
-.product-summary__image {
-  margin: 1.6rem;
-  width: 180px;
-  border-radius: 4px;
-}
-
 .product-summary__content {
-  max-width: 760px;
   color: var(--color-body-darker);
+  display: flex;
+  flex-direction: column;
   font-weight: 600;
-}
-
-.product-summary--shipping .product-summary__heading {
+  max-width: 760px;
   position: relative;
+  top: 5rem;
 }
 
-.product-summary--shipping .product-summary__heading::before {
-  content: url('../misc/images/ic_shipping.png');
-  display: inline-block;
-  position: absolute;
-  right: -25px;
+.product-summary--reversed .product-summary__heading {
+  order: 2;
+  margin-bottom: 0;
+  margin-top: 3.2rem;
 }
 
 .product-summary__description {
   font-size: 1.8rem;
-}
-
-.product-summary_location {
-  margin: 25% 0;
-}
-
-.product-container {
-  background-color: white;
+  margin: 0;
 }
 
 .product-summary__money-symbol {
   margin-right: 1rem;
 }
 
+@media screen and (max-width: 768px) {
+  .product-summary__description {
+    font-size: 1rem;
+  }
+
+  .product-summary__heading {
+    margin-bottom: 1rem;
+  }
+
+  .product-summary__money-symbol {
+    margin-right: 0.5rem;
+  }
+  .product-summary__heading {
+    font-size: 1.6rem;
+  }
+}
+
+/* --------------  Hero --------------  */
+.hero {
+  background-color: white;
+  display: flex;
+}
+
+.hero__image--small {
+  width: 180px;
+  margin: 1.6rem;
+}
+
+.hero__content {
+  text-align: left;
+  position: relative;
+  top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .hero__image--small {
+    width: 90px;
+  }
+}
+
+/* --------------  Product Result --------------  */
+.product-result {
+  grid-template-columns: 0fr 0.8fr 0.2fr;
+  background-color: white;
+}
+
+.product-result__image {
+  border-radius: 4px;
+}
+
+.product-result--shipping .product-summary__heading {
+  position: relative;
+}
+
+.product-result--shipping .product-summary__heading::after {
+  content: url('../misc/images/ic_shipping.png');
+  margin-left: 1rem;
+}
+
+.product-result_location {
+  position: relative;
+  top: 10rem;
+}
+
+.product-container {
+  background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .product-result_location {
+    top: 7.5rem;
+  }
+}
 /* --------------  Product List --------------  */
 
 .product-list__separator {
@@ -313,4 +406,21 @@ p {
 
 .search-results__nav {
   margin: 1.6rem 0;
+}
+
+@media screen and (max-width: 768px) {
+  .search-results {
+    /* margin: 0 7.5rem 5rem; */
+    margin: 0 5vw 2vh;
+  }
+}
+
+/* --------------  Images --------------  */
+.image--big {
+  width: 360px;
+  height: 360px;
+}
+
+.order--2:first-child {
+  order: 0;
 }
