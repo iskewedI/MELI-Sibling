@@ -1,24 +1,24 @@
 import React from 'react';
-import ProductSummary from './../small_components/ProductSummary';
+import ProductResult from '../small_components/ProductResult';
 
 const ProductList = () => {
   return (
     <div>
       <div className='product-container'>
-        <ProductSummary shipping={true} />
+        <ProductResult shipping={true} />
         <hr className='product-list__separator' />
       </div>
 
       <div className='product-container'>
-        <ProductSummary />
+        <ProductResult />
         <hr className='product-list__separator' />
       </div>
       <div className='product-container'>
-        <ProductSummary shipping={true} />
+        <ProductResult shipping={true} />
         <hr className='product-list__separator' />
       </div>
       <div className='product-container'>
-        <ProductSummary />
+        <ProductResult />
         <hr className='product-list__separator' />
       </div>
     </div>

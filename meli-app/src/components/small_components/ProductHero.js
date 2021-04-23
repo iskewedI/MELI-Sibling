@@ -11,7 +11,7 @@ const ProductHero = () => {
         alt='Imagen del producto'
       />
       <div className='hero__content'>
-        <ProductSummary reversed={true} />
+        <ProductSummary reversed={false} />
       </div>
     </div>
   );
