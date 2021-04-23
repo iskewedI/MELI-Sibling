@@ -5,9 +5,9 @@ import SearchBox from './SearchBox';
 const Navbar = () => {
   return (
     <div className='nav'>
-      <div className='nav__brand'>
+      <button className='btn btn--transparent nav__brand'>
         <MainLogo />
-      </div>
+      </button>
       <div className='nav__search'>
         <SearchBox />
       </div>
