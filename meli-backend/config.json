@@ -1,0 +1,17 @@
+{
+    "endpoints": {
+        "Items": "/api/items"
+    },
+    "messages": {
+        "notFound": "Not found.",
+        "invalidAuth": "Invalid email or password",
+        "noTokenProvided": "Access denied. No token provided.",
+        "accessDenied": "Access denied.",
+        "invalidToken": "Invalid token."
+    },
+    "external": {
+        "MELI": {
+            "baseURL": "https://api.mercadolibre.com"
+        }
+    }
+}
