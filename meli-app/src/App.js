@@ -5,13 +5,14 @@ import ProductSummary from './components/small_components/ProductSummary';
 import BreadCrumb from './components/blocks/BreadCrumb';
 import ProductResult from './components/small_components/ProductResult';
 import ProductList from './components/blocks/ProductList';
-import ProductDetail from './components/blocks/ProductDetail';
+import ProductDetail from './components/pages/ProductDetail';
 import ProductHero from './components/small_components/ProductHero';
 
 const App = () => {
   return (
     <React.Fragment>
-      <SearchResults />
+      <Navbar />
+      <ProductDetail />
     </React.Fragment>
   );
 };
