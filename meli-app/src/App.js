@@ -1,18 +1,18 @@
 import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './components/blocks/Navbar';
-import SearchResults from './components/pages/SearchResults';
-import ProductSummary from './components/small_components/ProductSummary';
-import BreadCrumb from './components/blocks/BreadCrumb';
-import ProductResult from './components/small_components/ProductResult';
-import ProductList from './components/blocks/ProductList';
 import ProductDetail from './components/pages/ProductDetail';
-import ProductHero from './components/small_components/ProductHero';
+import SearchResults from './components/pages/SearchResults';
 
 const App = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <ProductDetail />
+      <Switch>
+        <Route path='/items/:id' component={ProductDetail} />
+        <Route path='/items' component={SearchResults} />
+        <Redirect to='/' />
+      </Switch>
     </React.Fragment>
   );
 };
