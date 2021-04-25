@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter, useHistory } from 'react-router-dom';
 import SearchInput from './../small_components/SearchInput';
-import SearchButton from '../small_components/SearchButton';
 
 const SearchBox = () => {
+  const history = useHistory();
+
+  const handleSearch = search => {
+    history.push(`/items?search=${search}`);
+  };
+
   return (
     <div className='input-group'>
-      <SearchInput />
-      <SearchButton />
+      <SearchInput onSubmit={handleSearch} />
     </div>
   );
 };
 
-export default SearchBox;
+export default withRouter(SearchBox);

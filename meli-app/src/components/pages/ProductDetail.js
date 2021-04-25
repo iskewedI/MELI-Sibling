@@ -1,10 +1,13 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import ProductResult from '../small_components/ProductResult';
 import ProductHero from '../small_components/ProductHero';
 import ProductSummary from '../small_components/ProductSummary';
 import BreadCrumb from './../blocks/BreadCrumb';
 
 const ProductDetail = () => {
+  const { id } = useParams();
+
   return (
     <React.Fragment>
       <div className='product-detail'>
