@@ -1,17 +1,23 @@
 import React from 'react';
-import ProductSummary from './ProductSummary';
 
-const ProductHero = ({ pricePosition = 'top', imageSize = 'small' }) => {
+const ProductHero = ({ imageUrl, price, title }) => {
   return (
     <div className='hero'>
       <img
-        className={`hero__image--${imageSize} product-result__image`}
-        src='https://http2.mlstatic.com/D_NQ_NP_908744-MLA44099561456_112020-V.webp'
-        srcSet=''
+        className={`hero__image--small product-result__image`}
+        src={imageUrl}
         alt='Imagen del producto'
       />
       <div className='hero__content'>
-        <ProductSummary reversed={pricePosition === 'bottom' ? true : false} />
+        <article className={`product-summary`}>
+          <div className='product-summary__content'>
+            <h3 className='product-summary__heading'>
+              <span className='product-summary__money-symbol'>$</span>
+              {price}
+            </h3>
+            <p className='product-summary__description'>{title}</p>
+          </div>
+        </article>
       </div>
     </div>
   );

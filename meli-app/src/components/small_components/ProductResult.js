@@ -2,14 +2,18 @@ import React from 'react';
 import ProductSummary from './ProductSummary';
 import ProductHero from './ProductHero';
 
-const ProductResult = ({ hasShipping }) => {
+const ProductResult = ({ data }) => {
   return (
     <article
       className={`grid grid--cols-3 product-result ${
-        hasShipping ? 'product-result--shipping' : ''
+        data.free_shipping ? 'product-result--shipping' : ''
       }`}
     >
-      <ProductHero />
+      <ProductHero
+        imageUrl={data.picture}
+        price={data.price.decimals}
+        title={data.title}
+      />
       <div className='product-result_location'>Capital Federal</div>
     </article>
   );

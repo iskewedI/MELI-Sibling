@@ -10,24 +10,32 @@ const SearchResults = () => {
   const urlParams = new URLSearchParams(useLocation().search);
   const search = urlParams.get('search');
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!search) return <Redirect to='/' />;
 
-    if (!results) {
-      const searchResults = await getSearchResults(search);
+    if (!results || results.lastSearch !== search) {
+      const handleSearch = async () => {
+        const searchResults = await getSearchResults(search);
 
-      setResults(searchResults);
+        searchResults.lastSearch = search;
+
+        setResults(searchResults);
+      };
+
+      handleSearch();
     }
-  }, [results, setResults]);
+  }, [search, results, setResults]);
 
   if (!results) return <div>Cargando...</div>;
+
+  console.log(results.categories);
 
   return (
     <div className='search-results'>
       <div className='search-results__nav'>
-        <BreadCrumb />
+        <BreadCrumb items={results.categories} />
       </div>
-      <ProductList />
+      <ProductList products={results.items} />
     </div>
   );
 };
