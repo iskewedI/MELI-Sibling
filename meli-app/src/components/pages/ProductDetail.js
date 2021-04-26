@@ -1,36 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import ProductResult from '../small_components/ProductResult';
-import ProductHero from '../small_components/ProductHero';
-import ProductSummary from '../small_components/ProductSummary';
 import BreadCrumb from './../blocks/BreadCrumb';
+import { getProductDetail } from './../../api/backend';
 
 const ProductDetail = () => {
+  const [results, setResults] = useState(null);
+
   const { id } = useParams();
+
+  useEffect(() => {
+    if (!id) return <Redirect to='/' />;
+
+    if (!results || results.lastSearch !== id) {
+      const handleSearch = async () => {
+        const searchResults = await getProductDetail(id);
+
+        searchResults.lastSearch = id;
+
+        setResults(searchResults);
+      };
+
+      handleSearch();
+    }
+  }, [id, results, setResults]);
+
+  if (!results) return <div>Cargando..</div>;
+
+  const product = results.items;
 
   return (
     <React.Fragment>
       <div className='product-detail'>
-        <BreadCrumb />
+        <BreadCrumb items={['1']} />
         <div className='product-detail__content'>
           <div className='hero'>
             <img
               className='hero__image hero__image--big product-result__image'
-              src='https://http2.mlstatic.com/D_NQ_NP_908744-MLA44099561456_112020-V.webp'
+              src={product.picture}
               srcSet=''
               alt='Imagen del producto'
             />
             <div className='hero__content'>
-              <p className='product-detail__status'>Nuevo - 234 vendidos</p>
+              <p className='product-detail__status'>
+                {product.condition === 'new' ? 'Nuevo' : 'Usado'} -{' '}
+                {product.sold_quantity} vendido{product.sold_quantity > 1 ? 's' : ''}
+              </p>
               <div>
                 <article className='product-summary'>
                   <div className='product-summary__content'>
-                    <p className='product-summary__description'>
-                      Deco Reverse Sombrero Oxford
-                    </p>
+                    <p className='product-summary__description'>{product.title}</p>
                     <h3 className='product-summary__heading'>
                       <span className='product-summary__money-symbol'>$</span>
-                      1.545
+                      {product.price.decimals}
                     </h3>
                   </div>
                 </article>
@@ -40,18 +62,7 @@ const ProductDetail = () => {
           </div>
           <div className='product-description'>
             <h2 className='product-description__heading'>Descripción del producto</h2>
-            <p className='product-description__content'>
-              Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos
-              de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias
-              desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la
-              imprenta) desconocido usó una galería de textos y los mezcló de tal manera
-              que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años,
-              sino que tambien ingresó como texto de relleno en documentos electrónicos,
-              quedando esencialmente igual al original. Fue popularizado en los 60s con la
-              creación de las hojas "Letraset", las cuales contenian pasajes de Lorem
-              Ipsum, y más recientemente con software de autoedición, como por ejemplo
-              Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-            </p>
+            <p className='product-description__content'>{product.description}</p>
           </div>
         </div>
       </div>

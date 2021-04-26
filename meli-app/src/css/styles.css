@@ -101,6 +101,7 @@ p {
   outline: 0;
   padding: 1.3rem 1.5rem;
   width: 100%;
+  line-height: 1.5;
 }
 
 .input::placeholder {
@@ -313,7 +314,9 @@ p {
 
 .product-summary__description {
   font-size: 1.8rem;
+  font-weight: 500;
   margin: 0;
+  max-width: 30rem;
 }
 
 .product-summary__money-symbol {
@@ -343,6 +346,7 @@ p {
 
 .hero__image--small {
   width: 180px;
+  height: 180px;
   margin: 1.6rem;
 }
 
@@ -354,13 +358,12 @@ p {
 
 .hero__content {
   text-align: left;
-  position: relative;
-  top: 2rem;
 }
 
 @media screen and (max-width: 768px) {
   .hero__image--small {
     width: 90px;
+    height: 90px;
   }
 
   .hero__image--big {
