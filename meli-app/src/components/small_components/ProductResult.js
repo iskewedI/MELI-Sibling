@@ -1,5 +1,4 @@
 import React from 'react';
-import ProductSummary from './ProductSummary';
 import ProductHero from './ProductHero';
 
 const ProductResult = ({ data }) => {
