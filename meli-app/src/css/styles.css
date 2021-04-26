@@ -505,3 +505,15 @@ p {
     margin: 1.6rem 0;
   }
 }
+
+/* --------------  Links --------------  */
+.link {
+  color: inherit;
+  opacity: 0.8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 1;
+}

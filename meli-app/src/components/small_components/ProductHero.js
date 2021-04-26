@@ -1,13 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ProductHero = ({ imageUrl, price, title }) => {
+const ProductHero = ({ id, imageUrl, price, title }) => {
   return (
     <div className='hero'>
-      <img
-        className={`hero__image--small product-result__image`}
-        src={imageUrl}
-        alt='Imagen del producto'
-      />
+      <button className='btn btn--transparent'>
+        <img
+          className={`hero__image--small product-result__image`}
+          src={imageUrl}
+          alt='Imagen del producto'
+          onClick={console.log('clicked')}
+        />
+      </button>
+
       <div className='hero__content'>
         <article className={`product-summary`}>
           <div className='product-summary__content'>
@@ -15,7 +20,9 @@ const ProductHero = ({ imageUrl, price, title }) => {
               <span className='product-summary__money-symbol'>$</span>
               {price}
             </h3>
-            <p className='product-summary__description'>{title}</p>
+            <Link to={`/items/${id}`} className='link product-summary__description'>
+              {title}
+            </Link>
           </div>
         </article>
       </div>

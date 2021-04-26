@@ -9,6 +9,7 @@ const ProductResult = ({ data }) => {
       }`}
     >
       <ProductHero
+        id={data.id}
         imageUrl={data.picture}
         price={data.price.decimals}
         title={data.title}
