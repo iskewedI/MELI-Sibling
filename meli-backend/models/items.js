@@ -11,11 +11,7 @@ const validatorSearch = ({ query }) => {
 
   if (!querySearch) return { error: { message: responseMessages.required } };
 
-  const schema = Joi.string()
-    .min(5)
-    .max(150)
-    .required()
-    .messages(responseMessages);
+  const schema = Joi.string().min(2).max(150).required().messages(responseMessages);
 
   return schema.validate(querySearch);
 };
@@ -28,23 +24,25 @@ const validatorId = ({ params }) => {
 
   if (!params.id) return { error: { message: responseMessages.required } };
 
-  const schema = Joi.string()
-    .min(1)
-    .max(150)
-    .required()
-    .messages(responseMessages);
+  const schema = Joi.string().min(1).max(150).required().messages(responseMessages);
 
   return schema.validate(params.id);
 };
 
 const responseMaker = (() => {
-  const getItemsBySearch = (data) => ({
-    ...itemParser.getAuthor(data.apiCaller),
-    ...itemParser.getCategories(data.available_filters),
-    ...itemParser.getResultItems(data.results, 4),
-  });
+  const getItemsBySearch = async data => {
+    const categories = await itemParser.getCategories(
+      data.available_filters,
+      data.filters
+    );
+    return {
+      ...itemParser.getAuthor(data.apiCaller),
+      ...categories,
+      ...itemParser.getResultItems(data.results, 4),
+    };
+  };
 
-  const getItemById = async (data) => {
+  const getItemById = async data => {
     const item = await itemParser.getSingleItem(data.item);
 
     return {

@@ -38,7 +38,7 @@ const itemParser = (() => {
     },
   };
 
-  const getAuthor = (apiCaller) => {
+  const getAuthor = apiCaller => {
     const { key, properties } = Constants.author;
 
     return {
@@ -49,25 +49,43 @@ const itemParser = (() => {
     };
   };
 
-  const getCategories = (filters) => {
+  const getCategories = async (availableFilters, filters) => {
     const { key, filterId } = Constants.categories;
 
-    const categoryFilterIndex = filters.findIndex(
-      (filter) => filter.id === filterId
-    );
+    const getCategoryNames = async (filter, orderBy, orderType) => {
+      const categoryFilterIndex = filter.findIndex(filter => filter.id === filterId);
 
-    const matchedCategories = filters[categoryFilterIndex].values;
+      const categoriesFilter = filter[categoryFilterIndex];
 
-    const mostResultsFirst = _.orderBy(matchedCategories, 'results', 'desc');
+      if (orderBy && orderType) {
+        const mostResultsCategoryId = categoriesFilter.values[0].id;
 
-    const categoryNames = mostResultsFirst.map((result) => result.name);
+        const url = `https://api.mercadolibre.com/categories/${mostResultsCategoryId}`;
+
+        const result = await axios.get(url);
+
+        const categoryNames = result.data.path_from_root.map(path => path.name);
+
+        return categoryNames;
+      }
+
+      return categoriesFilter;
+    };
+
+    let categoryNames;
+
+    // if (filters === null) {
+    //   categoryNames = mostResultsFirst.map(result => result.name);
+    // } else {
+    categoryNames = await getCategoryNames(availableFilters, 'results', 'desc');
+    // }
 
     return {
       [key]: categoryNames,
     };
   };
 
-  const getItemPrice = (itemData) => {
+  const getItemPrice = itemData => {
     const { key, properties } = Constants.items.properties.price;
 
     const price = {
@@ -79,7 +97,7 @@ const itemParser = (() => {
     return { [key]: price };
   };
 
-  const getItemDescription = async (item) => {
+  const getItemDescription = async item => {
     const url = `${MELI.baseURL}/items/${item.id}/description`;
 
     const result = await axios.get(url);
@@ -87,7 +105,7 @@ const itemParser = (() => {
     return result.data.plain_text;
   };
 
-  const getSingleItem = async (item) => {
+  const getSingleItem = async item => {
     const { key, properties } = Constants.items;
 
     const {
@@ -119,7 +137,7 @@ const itemParser = (() => {
 
     const { id, title, picture, condition, freeShipping } = properties;
 
-    const parsedItems = items.map((result) => ({
+    const parsedItems = items.map(result => ({
       [id]: result.id,
       [title]: result.title,
       ...getItemPrice(result),
