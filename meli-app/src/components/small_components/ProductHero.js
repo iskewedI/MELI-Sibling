@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 const ProductHero = ({ id, imageUrl, price, title }) => {
   return (
     <div className='hero'>
-      <button className='btn btn--transparent'>
+      <Link to={`/items/${id}`} className='link btn btn--transparent'>
         <img
           className={`hero__image--small product-result__image`}
           src={imageUrl}
           alt='Imagen del producto'
           onClick={console.log('clicked')}
         />
-      </button>
+      </Link>
 
       <div className='hero__content'>
         <article className={`product-summary`}>
