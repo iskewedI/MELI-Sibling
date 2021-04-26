@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import SearchLogoImage from '../../misc/images/ic_Search.png';
 import SearchLogoImage2x from '../../misc/images/ic_Search@2x.png';
 
-const SearchInput = ({ onSubmit }) => {
-  const urlParams = new URLSearchParams(useLocation().search);
-  const search = urlParams.get('search');
-
-  const [value, setValue] = useState(search || '');
+const SearchInput = ({ onSubmit, startValue }) => {
+  const [value, setValue] = useState(startValue || null);
 
   const placeHolder = 'Nunca dejes de buscar';
 
