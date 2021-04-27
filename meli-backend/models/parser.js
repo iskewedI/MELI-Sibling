@@ -57,28 +57,24 @@ const itemParser = (() => {
 
       const categoriesFilter = filter[categoryFilterIndex];
 
-      if (orderBy && orderType) {
-        const mostResultsCategoryId = categoriesFilter.values[0].id;
+      const mostResultsCategoryId = categoriesFilter.values[0].id;
 
-        const url = `https://api.mercadolibre.com/categories/${mostResultsCategoryId}`;
+      const url = `https://api.mercadolibre.com/categories/${mostResultsCategoryId}`;
 
-        const result = await axios.get(url);
+      const result = await axios.get(url);
 
-        const categoryNames = result.data.path_from_root.map(path => path.name);
+      const categoryNames = result.data.path_from_root.map(path => path.name);
 
-        return categoryNames;
-      }
-
-      return categoriesFilter;
+      return categoryNames;
     };
 
     let categoryNames;
 
-    // if (filters === null) {
-    //   categoryNames = mostResultsFirst.map(result => result.name);
-    // } else {
-    categoryNames = await getCategoryNames(availableFilters, 'results', 'desc');
-    // }
+    if (filters.length > 0) {
+      categoryNames = await getCategoryNames(filters);
+    } else {
+      categoryNames = await getCategoryNames(availableFilters, 'results', 'desc');
+    }
 
     return {
       [key]: categoryNames,
