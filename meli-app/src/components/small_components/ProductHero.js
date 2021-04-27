@@ -9,7 +9,6 @@ const ProductHero = ({ id, imageUrl, price, title }) => {
           className={`hero__image--small product-result__image`}
           src={imageUrl}
           alt='Imagen del producto'
-          onClick={console.log('clicked')}
         />
       </Link>
 

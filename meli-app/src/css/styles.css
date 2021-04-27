@@ -517,3 +517,8 @@ p {
 .link:hover {
   opacity: 1;
 }
+
+/* --------------  Loading GIF --------------  */
+.loading {
+  text-align: center;
+}

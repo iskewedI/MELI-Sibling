@@ -3,6 +3,7 @@ import { useLocation, Redirect } from 'react-router-dom';
 import BreadCrumb from '../blocks/BreadCrumb';
 import ProductList from '../blocks/ProductList';
 import { getSearchResults } from './../../api/backend';
+import Loading from './../small_components/Loading';
 
 const SearchResults = () => {
   const [results, setResults] = useState(null);
@@ -14,6 +15,8 @@ const SearchResults = () => {
     if (!search) return <Redirect to='/' />;
 
     if (!results || results.lastSearch !== search) {
+      setResults(null);
+
       const handleSearch = async () => {
         const searchResults = await getSearchResults(search);
 
@@ -26,9 +29,7 @@ const SearchResults = () => {
     }
   }, [search, results, setResults]);
 
-  if (!results) return <div>Cargando...</div>;
-
-  console.log(results.categories);
+  if (!results) return <Loading width='64' />;
 
   return (
     <div className='search-results'>
