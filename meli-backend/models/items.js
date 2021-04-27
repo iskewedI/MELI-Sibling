@@ -35,6 +35,7 @@ const responseMaker = (() => {
       data.available_filters,
       data.filters
     );
+
     return {
       ...itemParser.getAuthor(data.apiCaller),
       ...categories,
@@ -43,7 +44,7 @@ const responseMaker = (() => {
   };
 
   const getItemById = async data => {
-    const item = await itemParser.getSingleItem(data.item);
+    const item = await itemParser.getSingleItem(data);
 
     return {
       ...itemParser.getAuthor(data.apiCaller),
@@ -51,7 +52,13 @@ const responseMaker = (() => {
     };
   };
 
-  return { getItemsBySearch, getItemById };
+  const getItemCategories = async data => {
+    const categories = await itemParser.getCategoryNamesById(data.category_id);
+
+    return categories;
+  };
+
+  return { getItemsBySearch, getItemById, getItemCategories };
 })();
 
 module.exports = {

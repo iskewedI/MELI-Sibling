@@ -49,6 +49,16 @@ const itemParser = (() => {
     };
   };
 
+  const getCategoryNamesById = async id => {
+    const url = `https://api.mercadolibre.com/categories/${id}`;
+
+    const result = await axios.get(url);
+
+    const categoryNames = result.data.path_from_root.map(path => path.name);
+
+    return categoryNames;
+  };
+
   const getCategoryNames = async filter => {
     const { filterId } = Constants.categories;
 
@@ -58,11 +68,7 @@ const itemParser = (() => {
 
     const mostResultsCategoryId = categoriesFilter.values[0].id;
 
-    const url = `https://api.mercadolibre.com/categories/${mostResultsCategoryId}`;
-
-    const result = await axios.get(url);
-
-    const categoryNames = result.data.path_from_root.map(path => path.name);
+    const categoryNames = await getCategoryNamesById(mostResultsCategoryId);
 
     return categoryNames;
   };
@@ -152,6 +158,7 @@ const itemParser = (() => {
     getCategories,
     getSingleItem,
     getResultItems,
+    getCategoryNamesById,
   };
 })();
 

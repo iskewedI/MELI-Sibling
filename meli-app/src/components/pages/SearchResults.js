@@ -6,7 +6,7 @@ import { getSearchResults } from './../../api/backend';
 import Loading from './../small_components/Loading';
 
 const SearchResults = () => {
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState();
 
   const urlParams = new URLSearchParams(useLocation().search);
   const search = urlParams.get('search');
@@ -14,13 +14,9 @@ const SearchResults = () => {
   useEffect(() => {
     if (!search) return <Redirect to='/' />;
 
-    if (!results || results.lastSearch !== search) {
-      setResults(null);
-
+    if (!results) {
       const handleSearch = async () => {
         const searchResults = await getSearchResults(search);
-
-        searchResults.lastSearch = search;
 
         setResults(searchResults);
       };

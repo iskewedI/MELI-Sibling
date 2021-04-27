@@ -2,31 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import BreadCrumb from './../blocks/BreadCrumb';
-import { getProductDetail } from './../../api/backend';
+import { getProductDetail, getProductCategories } from './../../api/backend';
 import Loading from './../small_components/Loading';
 
 const ProductDetail = () => {
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState();
+  const [categories, setCategories] = useState(null);
 
   const { id } = useParams();
 
   useEffect(() => {
     if (!id) return <Redirect to='/' />;
 
-    if (!results || results.lastSearch !== id) {
-      setResults(null);
-
+    if (!results) {
       const handleSearch = async () => {
         const searchResults = await getProductDetail(id);
-
-        searchResults.lastSearch = id;
 
         setResults(searchResults);
       };
 
       handleSearch();
     }
-  }, [id, results, setResults]);
+
+    if (!categories) {
+      const handleSearch = async () => {
+        const categoriesResult = await getProductCategories(id);
+
+        setCategories(categoriesResult);
+      };
+
+      handleSearch();
+    }
+  }, [id, results, setResults, categories, setCategories]);
 
   if (!results) return <Loading width='64' />;
 
@@ -35,7 +42,7 @@ const ProductDetail = () => {
   return (
     <React.Fragment>
       <div className='product-detail'>
-        <BreadCrumb items={['1']} />
+        {categories && <BreadCrumb items={categories} />}
         <div className='product-detail__content'>
           <div className='hero'>
             <img
@@ -47,7 +54,7 @@ const ProductDetail = () => {
             <div className='hero__content'>
               <p className='product-detail__status'>
                 {product.condition === 'new' ? 'Nuevo' : 'Usado'} -{' '}
-                {product.sold_quantity} vendido{product.sold_quantity > 1 ? 's' : ''}
+                {product.sold_quantity} vendido{product.sold_quantity === 1 ? '' : 's'}
               </p>
               <div>
                 <article className='product-summary'>

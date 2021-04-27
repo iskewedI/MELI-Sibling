@@ -3,7 +3,7 @@ import SearchLogoImage from '../../misc/images/ic_Search.png';
 import SearchLogoImage2x from '../../misc/images/ic_Search@2x.png';
 
 const SearchInput = ({ onSubmit, startValue }) => {
-  const [value, setValue] = useState(startValue || null);
+  const [value, setValue] = useState(startValue);
 
   const placeHolder = 'Nunca dejes de buscar';
 
@@ -26,7 +26,7 @@ const SearchInput = ({ onSubmit, startValue }) => {
           className='input'
           placeholder={placeHolder}
           onChange={handleChange}
-          value={value}
+          value={value || ''}
         ></input>
       </form>
       <button className='btn btn--grey' onClick={onSearchClick}>

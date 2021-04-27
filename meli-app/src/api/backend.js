@@ -22,3 +22,11 @@ export const getProductDetail = async id => {
 
   return result.data;
 };
+
+export const getProductCategories = async id => {
+  const url = `${backendAPI.baseURL}/items/${id}/categories`;
+
+  const result = await axios.get(url, { headers: getHeaders() });
+
+  return result.data;
+};

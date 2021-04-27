@@ -6,13 +6,14 @@ import SearchBox from './SearchBox';
 const Navbar = () => {
   const history = useHistory();
 
-  const handleClick = () => {
+  const handleLogoClick = () => {
     history.push('/');
+    window.location.reload();
   };
 
   return (
     <div className='nav'>
-      <button className='btn btn--transparent nav__brand' onClick={handleClick}>
+      <button className='btn btn--transparent nav__brand' onClick={handleLogoClick}>
         <MainLogo />
       </button>
       <div className='nav__search'>

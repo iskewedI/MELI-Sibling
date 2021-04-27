@@ -18,7 +18,9 @@ router.get('/', validateQuery(validatorSearch), async ({ query, headers }, res) 
     },
   };
 
-  res.send(await responseMaker.getItemsBySearch(data));
+  const response = await responseMaker.getItemsBySearch(data);
+
+  res.send(response);
 });
 
 router.get('/:id', validateQuery(validatorId), async ({ params, headers }, res) => {
@@ -27,7 +29,7 @@ router.get('/:id', validateQuery(validatorId), async ({ params, headers }, res) 
   const result = await axios.get(url);
 
   const data = {
-    item: result.data,
+    ...result.data,
     apiCaller: {
       name: headers.caller_name,
       lastname: headers.caller_lastname,
@@ -38,5 +40,27 @@ router.get('/:id', validateQuery(validatorId), async ({ params, headers }, res) 
 
   res.send(response);
 });
+
+router.get(
+  '/:id/categories',
+  validateQuery(validatorId),
+  async ({ params, headers }, res) => {
+    const url = `${MELI.baseURL}/items/${params.id}`;
+
+    const result = await axios.get(url);
+
+    const data = {
+      ...result.data,
+      apiCaller: {
+        name: headers.caller_name,
+        lastname: headers.caller_lastname,
+      },
+    };
+
+    const response = await responseMaker.getItemCategories(data);
+
+    res.send(response);
+  }
+);
 
 module.exports = router;

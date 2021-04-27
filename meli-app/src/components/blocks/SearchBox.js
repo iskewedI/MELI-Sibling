@@ -11,6 +11,7 @@ const SearchBox = () => {
 
   const handleSearch = search => {
     history.push(`/items?search=${search}`);
+    window.location.reload();
   };
 
   return (
