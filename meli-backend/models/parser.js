@@ -49,7 +49,7 @@ const itemParser = (() => {
     };
   };
 
-  const getCategoryNames = async (filter, orderBy, orderType) => {
+  const getCategoryNames = async filter => {
     const { filterId } = Constants.categories;
 
     const categoryFilterIndex = filter.findIndex(filter => filter.id === filterId);
