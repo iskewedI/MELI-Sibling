@@ -299,6 +299,7 @@ p {
 .product-summary__heading {
   display: inline-block;
   font-size: 2.4rem;
+  font-weight: 500;
   margin: 3.2rem 0;
   word-break: break-all;
 }
@@ -393,7 +394,7 @@ p {
 
 .product-result_location {
   position: relative;
-  top: 10rem;
+  top: 5rem;
 }
 
 .product-container {
