@@ -49,24 +49,26 @@ const itemParser = (() => {
     };
   };
 
+  const getCategoryNames = async (filter, orderBy, orderType) => {
+    const { filterId } = Constants.categories;
+
+    const categoryFilterIndex = filter.findIndex(filter => filter.id === filterId);
+
+    const categoriesFilter = filter[categoryFilterIndex];
+
+    const mostResultsCategoryId = categoriesFilter.values[0].id;
+
+    const url = `https://api.mercadolibre.com/categories/${mostResultsCategoryId}`;
+
+    const result = await axios.get(url);
+
+    const categoryNames = result.data.path_from_root.map(path => path.name);
+
+    return categoryNames;
+  };
+
   const getCategories = async (availableFilters, filters) => {
-    const { key, filterId } = Constants.categories;
-
-    const getCategoryNames = async (filter, orderBy, orderType) => {
-      const categoryFilterIndex = filter.findIndex(filter => filter.id === filterId);
-
-      const categoriesFilter = filter[categoryFilterIndex];
-
-      const mostResultsCategoryId = categoriesFilter.values[0].id;
-
-      const url = `https://api.mercadolibre.com/categories/${mostResultsCategoryId}`;
-
-      const result = await axios.get(url);
-
-      const categoryNames = result.data.path_from_root.map(path => path.name);
-
-      return categoryNames;
-    };
+    const { key } = Constants.categories;
 
     let categoryNames;
 
