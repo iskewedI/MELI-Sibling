@@ -44,8 +44,8 @@ const ProductDetail = () => {
   const currencyFormatter = new Intl.NumberFormat('es-ES', {
     style: 'decimal',
     //The 'minimum' is needed to prevent an internal error -> See https://github.com/andyearnshaw/Intl.js/issues/123
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
     currency,
   });
 
