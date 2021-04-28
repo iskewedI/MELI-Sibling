@@ -418,9 +418,11 @@ p {
 /* --------------  Product List --------------  */
 
 .product-list__separator {
+  /* Different options for different navigators */
   background-color: #f7f7f7;
   border: none;
   color: #f7f7f7;
+
   height: 2px;
   margin-bottom: 1rem;
   margin: 0 auto;
