@@ -324,6 +324,12 @@ p {
   margin-right: 1rem;
 }
 
+.product-summary__price-decimals {
+  bottom: 2rem;
+  font-size: 2rem;
+  position: relative;
+}
+
 @media screen and (max-width: 768px) {
   .product-summary__description {
     font-size: 1.5rem !important;
@@ -444,7 +450,7 @@ p {
 }
 
 .product-detail .hero__content {
-  top: 5rem;
+  padding: 3.2rem 0;
 }
 
 .product-detail .hero__image {

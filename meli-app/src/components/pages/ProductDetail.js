@@ -39,6 +39,20 @@ const ProductDetail = () => {
 
   const product = results.items;
 
+  const { decimals, currency } = product.price;
+
+  const currencyFormatter = new Intl.NumberFormat('es-ES', {
+    style: 'decimal',
+    //The 'minimum' is needed to prevent an internal error -> See https://github.com/andyearnshaw/Intl.js/issues/123
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    currency,
+  });
+
+  const numberInParts = currencyFormatter.formatToParts(decimals);
+
+  const price = currencyFormatter.format(decimals);
+
   return (
     <React.Fragment>
       <div className='product-detail'>
@@ -62,7 +76,10 @@ const ProductDetail = () => {
                     <p className='product-summary__description'>{product.title}</p>
                     <h3 className='product-summary__heading'>
                       <span className='product-summary__money-symbol'>$</span>
-                      {product.price.decimals}
+                      {price}
+                      <span className='product-summary__price-decimals'>
+                        {numberInParts[numberInParts.length - 1].value}
+                      </span>
                     </h3>
                   </div>
                 </article>
